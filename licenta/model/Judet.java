@@ -16,7 +16,7 @@ public class Judet {
     private Long id;
 
     @JsonProperty
-    @NotBlank(message = "Numele județului este obligatoriu")
+    @NotBlank(message = "Numele judetului este obligatoriu")
     private String nume;
 
     @OneToMany(mappedBy = "judet", cascade = CascadeType.ALL, orphanRemoval = true)

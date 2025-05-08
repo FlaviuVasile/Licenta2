@@ -17,7 +17,7 @@ public class Sugestie {
     @NotBlank(message = "Textul sugestiei este obligatoriu")
     private String text;
     @JsonProperty
-    @NotNull(message = "Data generării este obligatorie")
+    @NotNull(message = "Data generarii este obligatorie")
     private LocalDateTime dataGenerare;
 
     @ManyToOne

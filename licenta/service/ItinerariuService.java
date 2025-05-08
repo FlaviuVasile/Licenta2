@@ -28,6 +28,8 @@ public class ItinerariuService {
         return repository.save(itinerariu);
     }
 
+
+
     public Optional<Itinerariu> update(Long id, Itinerariu updated) {
         return repository.findById(id).map(existing -> {
             existing.setNume(updated.getNume());

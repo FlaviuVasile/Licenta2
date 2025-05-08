@@ -20,7 +20,7 @@ public class Restaurant {
     @NotBlank(message = "Adresa este obligatorie")
     private String adresa;
     @JsonProperty
-    @NotBlank(message = "Tipul bucătăriei este obligatoriu")
+    @NotBlank(message = "Tipul bucatariei este obligatoriu")
     private String tipBucatarie;
     @JsonProperty
     @Size(max = 500, message = "Descrierea poate avea maxim 500 de caractere")

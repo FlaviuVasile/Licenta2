@@ -20,30 +20,30 @@ public class SugestieController {
         this.service = service;
     }
 
-    @Operation(summary = "Returnează toate sugestiile")
+    @Operation(summary = "Returneaza toate sugestiile")
     @GetMapping
     public List<Sugestie> getAll() {
         return service.getAll();
     }
 
-    @Operation(summary = "Returnează o sugestie după ID")
+    @Operation(summary = "Returneaza o sugestie după ID")
     @GetMapping("/{id}")
     public ResponseEntity<Sugestie> getById(
             @Parameter(description = "ID-ul sugestiei") @PathVariable Long id) {
         return ResponseEntity.of(service.getById(id));
     }
 
-    @Operation(summary = "Creează o sugestie nouă")
+    @Operation(summary = "Creeaza o sugestie noua")
     @PostMapping
     public Sugestie create(
-            @Parameter(description = "Obiectul sugestie de creat")@Valid @RequestBody Sugestie sugestie) {
+            @Parameter(description = "Sugestie de creat")@Valid @RequestBody Sugestie sugestie) {
         return service.save(sugestie);
     }
 
-    @Operation(summary = "Șterge o sugestie după ID")
+    @Operation(summary = "Sterge o sugestie dupa ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
-            @Parameter(description = "ID-ul sugestiei de șters") @PathVariable Long id) {
+            @Parameter(description = "ID-ul sugestiei de sters") @PathVariable Long id) {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }

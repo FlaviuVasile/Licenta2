@@ -26,29 +26,29 @@ public class HotelController {
         return service.getAll();
     }
 
-    @Operation(summary = "Caută hotel după ID")
+    @Operation(summary = "Cauta hotel după ID")
     @GetMapping("/{id}")
     public ResponseEntity<Hotel> getById(@Parameter(description = "ID-ul hotelului")@PathVariable Long id) {
         return ResponseEntity.of(service.getById(id));
     }
 
-    @Operation(summary = "Creează un hotel nou")
+    @Operation(summary = "Creeaza un hotel nou")
     @PostMapping
-    public Hotel create(@Parameter(description = "Obiectul hotel de creat")@Valid @RequestBody Hotel hotel) {
+    public Hotel create(@Parameter(description = "Hotel de creat")@Valid @RequestBody Hotel hotel) {
         return service.save(hotel);
     }
 
-    @Operation(summary = "Actualizează un hotel existent după ID")
+    @Operation(summary = "Actualizeaza un hotel existent după ID")
     @PutMapping("/{id}")
     public ResponseEntity<Hotel> update(
-            @Parameter(description = "ID-ul hotelului de actualizat") @PathVariable Long id,
+            @Parameter(description = "ID-ul hotelului de actualizat") @PathVariable("id") Long id,
             @Parameter(description = "Datele noi pentru hotel")@Valid  @RequestBody Hotel hotel)  {
         return ResponseEntity.of(service.update(id, hotel));
     }
 
     @Operation(summary = "Șterge un hotel după ID")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@Parameter(description = "ID-ul hotelului de șters")@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@Parameter(description = "ID-ul hotelului de șters")@PathVariable("id") Long id) {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }

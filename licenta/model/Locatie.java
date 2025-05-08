@@ -15,7 +15,7 @@ public class Locatie {
     private Long id;
 
     @JsonProperty
-    @NotBlank(message = "Numele locației este obligatoriu")
+    @NotBlank(message = "Numele locatiei este obligatoriu")
     private String nume;
 
     @JsonProperty
@@ -23,7 +23,7 @@ public class Locatie {
     private String descriere;
 
     @JsonProperty
-    @NotBlank(message = "Țara este obligatorie")
+    @NotBlank(message = "Tara este obligatorie")
     private String tara;
 
     @JsonProperty

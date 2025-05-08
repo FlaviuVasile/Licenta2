@@ -1,9 +1,12 @@
 package com.licenta.dto;
-
+import  io.swagger.v3.oas.annotations.media.Schema;
 public class IntrebareDTO {
     private String intrebare;
+    @Schema(hidden = true)
     private String tipLocatie;
+    @Schema(hidden = true)
     private Integer ratingMinim;
+    @Schema(hidden = true)
     private String durata;
 
 
@@ -38,4 +41,5 @@ public class IntrebareDTO {
     public void setDurata(String durata) {
         this.durata = durata;
     }
+
 }

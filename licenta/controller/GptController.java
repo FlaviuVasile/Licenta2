@@ -21,9 +21,14 @@ public class GptController {
     }
 
     @PostMapping("/intreaba")
-    @Operation(summary = "Primește o întrebare și returnează răspunsul generat de GPT cu date din aplicație")
+    @Operation(summary = "Primeste o intrebare si returneaza raspunsul generat de GPT cu date din aplicatie")
     public ResponseEntity<RaspunsDTO> intreabaGpt(@Valid @RequestBody IntrebareDTO intrebareDTO) {
         String raspuns = gptService.raspunde(intrebareDTO);
         return ResponseEntity.ok(new RaspunsDTO(raspuns));
     }
 }
+
+
+
+
+

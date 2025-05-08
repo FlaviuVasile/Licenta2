@@ -20,38 +20,38 @@ public class OrasController {
         this.service = service;
     }
 
-    @Operation(summary = "Returnează toate orașele")
+    @Operation(summary = "Returneaza toate orasele")
     @GetMapping
     public List<Oras> getAll() {
         return service.getAll();
     }
 
-    @Operation(summary = "Returnează un oraș după ID")
+    @Operation(summary = "Returneaza un oras dupa ID")
     @GetMapping("/{id}")
     public ResponseEntity<Oras> getById(
             @Parameter(description = "ID-ul orașului") @PathVariable Long id) {
         return ResponseEntity.of(service.getById(id));
     }
 
-    @Operation(summary = "Creează un oraș nou")
+    @Operation(summary = "Creeaza un oras nou")
     @PostMapping
     public Oras create(
-            @Parameter(description = "Obiectul oraș de creat")@Valid @RequestBody Oras oras) {
+            @Parameter(description = "Oras de creat")@Valid @RequestBody Oras oras) {
         return service.save(oras);
     }
 
-    @Operation(summary = "Actualizează un oraș existent")
+    @Operation(summary = "Actualizeaza un oras existent")
     @PutMapping("/{id}")
     public ResponseEntity<Oras> update(
-            @Parameter(description = "ID-ul orașului de actualizat") @PathVariable Long id,
-            @Parameter(description = "Datele noi pentru oraș")@Valid @RequestBody Oras orasNou) {
+            @Parameter(description = "ID-ul orașului de actualizat") @PathVariable("id") Long id,
+            @Parameter(description = "Datele noi pentru oras")@Valid @RequestBody Oras orasNou) {
         return ResponseEntity.of(service.update(id, orasNou));
     }
 
-    @Operation(summary = "Șterge un oraș după ID")
+    @Operation(summary = "Sterge un oras dupa ID")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(
-            @Parameter(description = "ID-ul orașului de șters") @PathVariable Long id) {
+            @Parameter(description = "ID-ul orasului de sters") @PathVariable("id") Long id) {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }

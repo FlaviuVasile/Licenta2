@@ -20,31 +20,31 @@ public class LocatieController {
         this.service = service;
     }
 
-    @Operation(summary = "Returnează toate locațiile")
+    @Operation(summary = "Returneaza toate locatiile")
     @GetMapping
     public List<Locatie> getAll() {
         return service.getAll();
     }
 
-    @Operation(summary = "Creează o locație nouă")
+    @Operation(summary = "Creeaza o locatie nouă")
     @PostMapping
     public Locatie create(
-            @Parameter(description = "Obiectul locație de creat")@Valid @RequestBody Locatie locatie) {
+            @Parameter(description = "Locatie de creat")@Valid @RequestBody Locatie locatie) {
         return service.save(locatie);
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Șterge o locație după ID")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+    @Operation(summary = "Sterge o locatie după ID")
+    public ResponseEntity<Void> deleteById(@PathVariable("id") Long id) {
         service.deleteById(id);
         return ResponseEntity.noContent().build();
     }
 
 
-    @Operation(summary = "Returnează o locație după ID")
+    @Operation(summary = "Returneaza o locatie după ID")
     @GetMapping("/{id}")
     public Locatie getById(
-            @Parameter(description = "ID-ul locației") @PathVariable Long id) {
+            @Parameter(description = "ID-ul locatiei") @PathVariable Long id) {
         return service.getById(id);
     }
 }

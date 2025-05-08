@@ -22,7 +22,7 @@ public class Itinerariu {
     private double lungimea; // în km
 
     @JsonProperty
-    @Min(value = 0, message = "Înălțimea trebuie să fie pozitivă")
+    @Min(value = 0, message = "Inaltimea trebuie sa fie pozitiva")
     private int inaltime; // în metri
 
     @JsonProperty

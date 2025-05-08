@@ -12,7 +12,7 @@ public class Oras {
     private Long id;
 
     @JsonProperty
-    @NotBlank(message = "Numele orașului este obligatoriu")
+    @NotBlank(message = "Numele orasului este obligatoriu")
     private String nume;
 
     @ManyToOne

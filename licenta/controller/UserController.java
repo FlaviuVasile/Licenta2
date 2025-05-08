@@ -20,20 +20,20 @@ public class UserController {
         this.service = service;
     }
 
-    @Operation(summary = "Returnează toți utilizatorii")
+    @Operation(summary = "Returneaza toti utilizatorii")
     @GetMapping
     public List<User> getAll() {
         return service.getAll();
     }
 
-    @Operation(summary = "Returnează un utilizator după ID")
+    @Operation(summary = "Returneaza un utilizator după ID")
     @GetMapping("/{id}")
     public ResponseEntity<User> getById(
             @Parameter(description = "ID-ul utilizatorului") @PathVariable Long id) {
         return ResponseEntity.of(service.getById(id));
     }
 
-    @Operation(summary = "Creează un utilizator nou")
+    @Operation(summary = "Creeaza un utilizator nou")
     @PostMapping
     public User create(
             @Parameter(description = "Obiectul utilizator de creat")@Valid @RequestBody User user) {
