@@ -15,7 +15,6 @@ public class OpenAiTransformer implements GptTransformer {
 
     @Override
     public double score(IntrebareDTO dto) {
-        // scor foarte mic, doar fallback când nimeni altcineva nu se potrivește
         return 0.1;
     }
 

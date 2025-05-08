@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPTTurism Chat</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      background: #e4e4e4;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .chat-container {
+      width: 100%;
+      max-width: 600px;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      background: #d3d3d3;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      overflow: hidden;
+    }
+  
+    .chat-history {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
+      background-color: #f2f2f2;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .message {
+      padding: 12px 18px;
+      border-radius: 10px;
+      max-width: 80%;
+      word-wrap: break-word;
+      font-size: 0.95rem;
+      line-height: 1.4;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+  
+    .user {
+      align-self: flex-end;
+      background-color: #111;
+      color: #fff;
+    }
+  
+    .bot {
+      align-self: flex-start;
+      background-color: #333;
+      color: #fff;
+    }
+  
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      background: #c4c4c4;
+    }
+  
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 20px;
+      font-size: 1rem;
+      outline: none;
+    }
+  
+    .chat-input button {
+      margin-left: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+  
+    .chat-input button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+  </head>
+<body>
+  <div class="chat-container">
+    <div class="chat-history" id="chatHistory">
+      <!-- Mesajele vor apărea aici -->
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Scrie un mesaj...">
+      <button onclick="sendMessage()">Trimite</button>
+    </div>
+  </div>
+
+  <script>
+    async function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      if (message === '') return;
+
+      const chatHistory = document.getElementById('chatHistory');
+
+      const userMessage = document.createElement('div');
+      userMessage.className = 'message user';
+      userMessage.textContent = message;
+      chatHistory.appendChild(userMessage);
+
+      input.value = '';
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+
+      try {
+        const response = await fetch('http://localhost:8080/api/gpt/intreaba', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ intrebare: message })
+        });
+
+        if (!response.ok) {
+          throw new Error('Eroare la server');
+        }
+
+        const data = await response.json();
+
+        const botMessage = document.createElement('div');
+        botMessage.className = 'message bot';
+        botMessage.innerHTML = data.raspuns.replace(/\n/g, "<br>");
+        chatHistory.appendChild(botMessage);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+
+      } catch (error) {
+        const errorMessage = document.createElement('div');
+        errorMessage.className = 'message bot';
+        errorMessage.textContent = 'Eroare la trimiterea mesajului.';
+        chatHistory.appendChild(errorMessage);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+      }
+    }
+
+    document.getElementById('userInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+  </script>
+</body>
+</html>

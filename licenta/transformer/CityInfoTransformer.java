@@ -31,7 +31,7 @@ public class CityInfoTransformer implements GptTransformer {
     public double score(IntrebareDTO dto) {
         String intrebare = dto.getIntrebare().toLowerCase();
 
-        // Dacă întrebarea conține alte cuvinte turistice, NU e treaba noastră
+        // Dacă întrebarea conține aceste cuvinte atunci ea va recunoaste ce vrea utilizatorul
         if (intrebare.contains("hotel") || intrebare.contains("restaurant") ||
                 intrebare.contains("cazare") || intrebare.contains("mâncare") ||
                 intrebare.contains("locație") || intrebare.contains("traseu") ||
